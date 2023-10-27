@@ -19,6 +19,7 @@ class CourseController extends Controller
         $courses->when($q, function ($query) use ($q) {
             return $query->whereRaw("name LIKE '%" . strtolower($q) . "%'");
         });
+
         $courses->when($status, function ($query) use ($status) {
             return $query->whereRaw("status LIKE '%" . strtolower($status) . "%'");
         });
@@ -124,6 +125,25 @@ class CourseController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $course
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $course = Course::find($id);
+
+        if (!$course) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'course not found'
+            ], 404);
+        }
+
+        $course->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'course deleted'
         ]);
     }
 }
