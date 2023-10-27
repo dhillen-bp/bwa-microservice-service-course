@@ -12,7 +12,7 @@ class ChapterController extends Controller
     public function index(Request $request)
     {
         $chapters = Chapter::query();
-        $courseId = $request->query('chapter_id');
+        $courseId = $request->query('course_id');
 
         $chapters->when($courseId, function ($query) use ($courseId) {
             return $query->where('course_id', '=', $courseId);
