@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChapterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
@@ -29,3 +30,5 @@ Route::get('courses', [CourseController::class, 'index']);
 Route::post('courses', [CourseController::class, 'create']);
 Route::put('courses/{id}', [CourseController::class, 'update']);
 Route::delete('courses/{id}', [CourseController::class, 'destroy']);
+
+Route::post('chapters', [ChapterController::class, 'create']);
